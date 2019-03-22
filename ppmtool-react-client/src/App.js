@@ -4,9 +4,10 @@ import { Provider } from 'react-redux';
 import Dashboard from './components/Dashboard';
 import Header from './components/layout/Header';
 import AddProject from './components/project/AddProject';
-import store from './store'
+import UpdateProject from './components/project/UpdateProject';
+import store from './store';
 import './App.css';
-import "bootstrap/dist/css/bootstrap.min.css"
+import "bootstrap/dist/css/bootstrap.min.css";
 
 
 class App extends Component {
@@ -18,6 +19,8 @@ class App extends Component {
           <Header />
             <Route exact path="/dashboard" component={Dashboard} />
             <Route exact path="/addProject" component={AddProject} />
+            <Route exact path="/updateProject/:id" component={UpdateProject} />
+
           </div>
         </Router>
       </Provider>
