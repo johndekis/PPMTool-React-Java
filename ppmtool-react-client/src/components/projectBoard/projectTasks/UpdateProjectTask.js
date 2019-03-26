@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux'
 import classnames from 'classnames'
-import { getProjectTask, addProjectTask } from '../../../actions/backlogActions'
+import { getProjectTask, updateProjectTask } from '../../../actions/backlogActions'
 
 export class UpdateProjectTask extends Component {
     constructor(props) {
@@ -74,7 +74,7 @@ export class UpdateProjectTask extends Component {
             projectIdentifier: this.state.projectIdentifier
         }
 
-        this.props.addProjectTask(updateProjectTask.projectIdentifier, updateProjectTask, this.props.history)
+        this.props.updateProjectTask(this.state.projectIdentifier, this.state.projectSequence, updateProjectTask, this.props.history)
 
     }
 
@@ -172,4 +172,4 @@ const mapStateToProps = (state) => ({
 
 });
 
-export default connect(mapStateToProps, { getProjectTask, addProjectTask })(UpdateProjectTask);
+export default connect(mapStateToProps, { getProjectTask, updateProjectTask })(UpdateProjectTask);
