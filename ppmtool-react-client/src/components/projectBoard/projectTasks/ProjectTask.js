@@ -1,9 +1,19 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux'
+import { deleteProjectTask } from '../../../actions/backlogActions'
 
 export class ProjectTask extends Component {
+
+    onDeleteClick(backlog_id, pt_id) {
+        this.props.deleteProjectTask(backlog_id, pt_id)
+    }
+
   render() {
     const { project_task } = this.props
-
+    const backlog_id  = project_task.projectIdentifier
+    const pt_id = project_task.projectSequence
     let priorityClass;
     let priorityString;
 
@@ -29,10 +39,12 @@ export class ProjectTask extends Component {
                 <p className="card-text text-truncate ">
                     {project_task.acceptanceCriteria}
                 </p>
-                <a href="" className="btn btn-primary">
+                <Link to={`/updateProjectTask/${backlog_id}/${pt_id}`} className="btn btn-primary">
                     View / Update
-                </a>
-                <button className="btn btn-danger ml-4">
+                </Link>
+                <button 
+                onClick={this.onDeleteClick.bind(this, backlog_id, pt_id)} 
+                className="btn btn-danger ml-4">
                     Delete
                 </button>
             </div>
@@ -41,6 +53,9 @@ export class ProjectTask extends Component {
   }
 }
 
+ProjectTask.propTypes = {
+    deleteProjectTask: PropTypes.func.isRequired
+}
 
-export default ProjectTask;
+export default connect(null, { deleteProjectTask })(ProjectTask);
  

@@ -4,7 +4,7 @@ import ProjectTask from './projectTasks/ProjectTask';
 export class Backlog extends Component {
   render() {
     const { project_tasks } = this.props
-    console.log(this.props);
+    //console.log(this.props);
     const tasks = project_tasks.map((project_task) => (
         <ProjectTask key={project_task.id} project_task={project_task}/>
     ))

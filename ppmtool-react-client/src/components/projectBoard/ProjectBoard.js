@@ -41,7 +41,7 @@ export class ProjectBoard extends Component {
           )
         } else {
           return ( 
-            <div className="alert alert-info text-center" role="alert"> Ther are no Tasks for this project! </div>
+            <div className="alert alert-info text-center" role="alert"> There are no Tasks for this project! </div>
             )
         }
       } else {
@@ -67,7 +67,7 @@ export class ProjectBoard extends Component {
 }
 
 ProjectBoard.propTypes = {
-  backlog : PropTypes.object.isRequired,
+  project_tasks : PropTypes.array.isRequired,
   getBacklog : PropTypes.func.isRequired,
   errors: PropTypes.object.isRequired
 }
