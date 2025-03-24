@@ -1,11 +1,12 @@
 import axios from 'axios'
+import apiClient from '../apiClient';
 import { GET_ERRORS, SET_CURRENT_USER } from './types'
 import setJWTToken from '../securityUtils/setJWTToken';
 import jwt_decode from 'jwt-decode'
 
 export const createNewUser = (newUser, history) => async dispatch => {
     try {
-        await axios.post(`/api/users/register`, newUser);
+        await apiClient.post(`/api/users/register`, newUser);
         history.push(`/login`)
         dispatch({
             type: GET_ERRORS,
@@ -22,7 +23,7 @@ export const createNewUser = (newUser, history) => async dispatch => {
 export const login = LoginRequest => async dispatch => {
     try {
       
-        const res = await axios.post(`/api/users/login`, LoginRequest);
+        const res = await apiClient.post(`/api/users/login`, LoginRequest);
         const { token } = res.data;
         localStorage.setItem("jwtToken", token);
         setJWTToken(token);
@@ -33,6 +34,10 @@ export const login = LoginRequest => async dispatch => {
         })
         
     } catch (err) {
+
+        console.log({apiClient})
+        console.log({err})
+
         dispatch({
             type: GET_ERRORS,
             payload: err.response.data
